@@ -30,6 +30,6 @@ public class Team implements Serializable {
     @Column
     private String name;
     @OneToMany(fetch= FetchType.LAZY)
-    @JoinColumn(insertable = false,updatable = false)
+    @JoinColumn(name = "teamId",insertable = false,updatable = false)
     private List<Player> players;
 }
