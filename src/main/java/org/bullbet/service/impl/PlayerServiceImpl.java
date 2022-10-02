@@ -40,9 +40,9 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public String updatePlayer(Player player) {
+    public Player updatePlayer(Player player) {
         playerRepository.save(player);
-        return "{ \"success\" : true }";
+        return player;
     }
 
     @Override

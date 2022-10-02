@@ -39,7 +39,7 @@ public class PlayerController {
 
     @PostMapping(path = "/player")
     @ApiOperation(value = "New Player adding method")
-    public String newPlayer(@RequestBody Player player) {
+    public Player newPlayer(@RequestBody Player player) {
         return playerService.updatePlayer(player);
     }
 

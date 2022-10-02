@@ -9,7 +9,7 @@ public interface PlayerService {
 
     String updatePlayer(Long id, Player player);
 
-    String updatePlayer(Player player);
+    Player updatePlayer(Player player);
 
     Player getPlayer(Long id);
 

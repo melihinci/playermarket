@@ -29,7 +29,7 @@ public class Team implements Serializable {
     private Long id;
     @Column
     private String name;
-    @OneToMany(fetch= FetchType.LAZY)
-    @JoinColumn(name = "teamId",insertable = false,updatable = false)
+
+    @OneToMany(fetch= FetchType.LAZY,mappedBy="team")
     private List<Player> players;
 }
