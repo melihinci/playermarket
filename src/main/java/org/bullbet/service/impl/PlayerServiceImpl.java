@@ -1,11 +1,14 @@
 package org.bullbet.service.impl;
 
 import org.bullbet.entity.Player;
+import org.bullbet.entity.Team;
 import org.bullbet.repository.PlayerRepository;
+import org.bullbet.repository.TeamRepository;
 import org.bullbet.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.Optional;
 
@@ -14,6 +17,9 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Autowired
     PlayerRepository playerRepository;
+
+    @Autowired
+    TeamRepository teamRepository;
 
     @Override
     public long calculatePlayerValue(long playerId) {
@@ -40,7 +46,11 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
+    @Transactional
     public Player updatePlayer(Player player) {
+        Team team= teamRepository.findById(player.getTeamId()).get();
+        team.getPlayers().add(player);
+        teamRepository.save(team);
         playerRepository.save(player);
         return player;
     }

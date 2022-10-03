@@ -6,6 +6,7 @@ import org.bullbet.entity.TransferHistory;
 import org.bullbet.repository.PlayerRepository;
 import org.bullbet.repository.TeamRepository;
 import org.bullbet.repository.TransferHistoryRepository;
+import org.bullbet.service.PlayerService;
 import org.bullbet.service.TransferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,13 +30,13 @@ public class TransferServiceImpl implements TransferService {
     TransferHistoryRepository transferHistoryRepository;
 
     @Autowired
-    PlayerServiceImpl playerService;
+    PlayerService playerService;
 
-    @Value("${config.transfer.feeRate}")
-    int feeRate;
+    @Value("${config.transfer.feeRate:20}")
+    private float feeRate=15.0f;
 
     @Transactional
-    public String fullfillTransfer(long playerId, long teamTo) {
+    public Player fullfillTransfer(long playerId, long teamTo) {
         Optional<Player> player = playerRepository.findById(playerId);
         Optional<Team> targetTeam = teamRepository.findById(teamTo);
         TransferHistory history = new TransferHistory();
@@ -48,10 +49,10 @@ public class TransferServiceImpl implements TransferService {
         transferHistoryRepository.save(history);
         player.get().setTeamId(targetTeam.get().getId());
         playerRepository.save(player.get());
-        return "{ \"success\" : true }";
+        return player.get();
     }
 
     private long calculateCommissionFee(long transferFee) {
-        return transferFee * (feeRate / 100);
+        return Math.round(transferFee * (feeRate / 100l));
     }
 }

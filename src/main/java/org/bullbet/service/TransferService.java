@@ -1,6 +1,8 @@
 package org.bullbet.service;
 
+import org.bullbet.entity.Player;
+
 public interface TransferService {
 
-    public String fullfillTransfer(long playerId, long teamTo);
+    public Player fullfillTransfer(long playerId, long teamTo);
 }

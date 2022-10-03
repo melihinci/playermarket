@@ -35,12 +35,12 @@ public class TransferHistory implements Serializable {
     @Column
     private Date transferDate;
 
-    @OneToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="teamFromId",insertable = false,updatable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "teamFromId", insertable = false, updatable = false)
     private Team fromTeam;
 
-    @OneToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="teamToId",insertable = false,updatable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "teamToId", insertable = false, updatable = false)
     private Team toTeam;
 
 }

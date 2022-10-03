@@ -21,9 +21,9 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public String updateTeam(Team team) {
+    public Team updateTeam(Team team) {
         teamRepository.save(team);
-        return "{ \"success\" : true }";
+        return team;
     }
 
     @Override

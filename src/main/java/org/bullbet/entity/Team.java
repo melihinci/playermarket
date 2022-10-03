@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 import java.util.List;
 
@@ -21,10 +22,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@SequenceGenerator(name = "TEAM_SEQ", initialValue = 50)
 public class Team implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "TEAM_SEQ", strategy = GenerationType.AUTO)
     @Column
     private Long id;
     @Column

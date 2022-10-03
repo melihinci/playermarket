@@ -7,7 +7,7 @@ public interface TeamService {
 
     String updateTeam(Long id, Team Team);
 
-    String updateTeam(Team Team);
+    Team updateTeam(Team Team);
 
     Team getTeam(Long id);
 
